@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
-from database import db
+from utils import db
 from bs4 import BeautifulSoup
 import urllib
 import re

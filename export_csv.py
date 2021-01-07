@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
-from database import db
+from utils import db
 
 
 export_file = open("/Users/nicolaschanton/PycharmProjects/tunisie_index/extract.csv", "wb")

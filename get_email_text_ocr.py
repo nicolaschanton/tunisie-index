@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from database import db
+from utils import db
 import requests
+from CONF import CONF_GOOGLE_API
 
 
 for entreprise in db().entreprise.find({"email_img": {"$not": ""}}):
@@ -13,7 +14,7 @@ for entreprise in db().entreprise.find({"email_img": {"$not": ""}}):
 
         url = "https://vision.googleapis.com/v1/images:annotate"
 
-        querystring = {"key": "XXXXXXXXXXXXXXXXXXXX"}
+        querystring = {"key": str(CONF_GOOGLE_API)}
 
         payload = """{\n  \"requests\": [\n    {\n      \"image\": {\n        \"source\":{\n          \"imageUri\":\n \"""" + image_url + """\"}},\n      \"features\": [\n        {\n          \"type\": \"TEXT_DETECTION\"\n        }\n      ]\n    }\n  ]\n}"""
 

@@ -2,16 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import requests
-from database import db
+from utils import db, get_proxy, random_ua
 from bs4 import BeautifulSoup
-from proxy_rotate import get_proxy
-from random_uagents import random_ua
 
 
 for entry in db().entreprise.find({}):
     profile_url = entry["url"]
 
-    html = requests.request("GET", profile_url).text #, proxies=get_proxy(), headers={"user-agent": random_ua()}
+    html = requests.request("GET", profile_url, proxies=get_proxy(), headers={"user-agent": random_ua()},).text
     soup = BeautifulSoup(html, "html.parser")
 
     try:
